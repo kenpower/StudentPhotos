@@ -22,6 +22,9 @@
     margin-top: 8px;
     font-size: 1rem;
     color: #333;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
   }
 </style>
 

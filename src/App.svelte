@@ -1,9 +1,6 @@
 <script>
-  import svelteLogo from './assets/svelte.svg'
-  import viteLogo from '/vite.svg'
-  import Counter from './lib/Counter.svelte'
-    import ProfilePhoto from './ProfilePhoto.svelte';
-    import InputBox from './InputBox.svelte';
+  import ProfilePhoto from './ProfilePhoto.svelte';
+  import InputBox from './InputBox.svelte';
 
   let listOfStudents=$state(null)
 
@@ -17,7 +14,7 @@
         label: line + (match ? "" : "No valid ID found"),
         id: match ? match[0] : null,
         error: match ? null : "No valid ID found",
-        imageUrl: `https://idpics-cw.setu.ie/${match}.jpg`
+        imageUrl: match ? `https://idpics-cw.setu.ie/${match}.jpg`: "./no_profile_pic.png",
       };
     });
     
@@ -28,12 +25,16 @@
 </script>
 
 <main>
-Heading
+<h1>Paste list from... (e.g. from excel)</h1>>
   {#if listOfStudents}
    Photos
+   <div class="grid">
     {#each listOfStudents as {imageUrl , label} }
+    <div class="grid-item">
       <ProfilePhoto {imageUrl} {label}/>
+    </div>
     {/each}
+  </div>
   {:else}
     Input
     <InputBox {getPhotos}/>
@@ -41,19 +42,19 @@ Heading
 </main>
 
 <style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
+ .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
+
+  .grid-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
   }
 </style>

@@ -14,8 +14,8 @@
     }
   
     textarea {
-      width: 100%;
-      height: 100px;
+      width: 40rem;
+      height:20rem;
       resize: vertical;
     }
   
