@@ -2,30 +2,42 @@
   import svelteLogo from './assets/svelte.svg'
   import viteLogo from '/vite.svg'
   import Counter from './lib/Counter.svelte'
+    import ProfilePhoto from './ProfilePhoto.svelte';
+    import InputBox from './InputBox.svelte';
+
+  let listOfStudents=$state(null)
+
+  function getPhotos(text) {
+    const pattern = /C\d{8}/g;
+    const lines = text.split("\n");
+    
+    listOfStudents = lines.map(line => {
+      const match = line.match(pattern);
+      return {
+        label: line + (match ? "" : "No valid ID found"),
+        id: match ? match[0] : null,
+        error: match ? null : "No valid ID found",
+        imageUrl: `https://idpics-cw.setu.ie/${match}.jpg`
+      };
+    });
+    
+    console.log("Processed Data:", listOfStudents);
+  }
+
+  
 </script>
 
 <main>
-  <div>
-    <a href="https://vite.dev" target="_blank" rel="noreferrer">
-      <img src={viteLogo} class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank" rel="noreferrer">
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1>Vite + Svelte</h1>
-
-  <div class="card">
-    <Counter />
-  </div>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
+Heading
+  {#if listOfStudents}
+   Photos
+    {#each listOfStudents as {imageUrl , label} }
+      <ProfilePhoto {imageUrl} {label}/>
+    {/each}
+  {:else}
+    Input
+    <InputBox {getPhotos}/>
+  {/if}
 </main>
 
 <style>
