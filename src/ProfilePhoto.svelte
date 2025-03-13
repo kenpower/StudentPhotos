@@ -1,7 +1,11 @@
 <script>
- const {imageUrl, label} =$props();
-
+  const { imageUrl, label } = $props();
 </script>
+
+<div class="container">
+  <img class="image" src={imageUrl} alt={label} />
+  <div class="label">{label}</div>
+</div>
 
 <style>
   .container {
@@ -12,8 +16,8 @@
   }
 
   .image {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: auto;
     border-radius: 50%;
     object-fit: cover;
   }
@@ -27,8 +31,3 @@
     max-width: 100%;
   }
 </style>
-
-<div class="container">
-  <img class="image" src={imageUrl} alt={label} />
-  <div class="label">{label}</div>
-</div>
