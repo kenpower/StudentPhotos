@@ -13,6 +13,7 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
+    break-inside: avoid; /* Prevents splitting across pages */
   }
 
   .image {

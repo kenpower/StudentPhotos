@@ -39,7 +39,7 @@
 
 <main>
   {#if listOfStudents}
-    <div>
+    <div class="no-print">
       <label>Columns: {columns}</label>
       <input type="range" min="1" max="8" bind:value={columns} />
 
@@ -80,5 +80,19 @@
     padding: 10px;
     border: 1px solid #ccc;
     text-align: center;
+  }
+
+  @media print {
+    ::-webkit-scrollbar {
+      display: none; /* Hides scrollbars in WebKit browsers */
+    }
+
+    .no-print {
+      display: none !important;
+    }
+
+    body {
+      overflow: hidden; /* Prevents scrolling */
+    }
   }
 </style>
