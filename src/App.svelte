@@ -40,13 +40,12 @@
 <main>
   {#if listOfStudents}
     <div class="no-print">
-      <label>Columns: {columns}</label>
-      <input type="range" min="1" max="8" bind:value={columns} />
+      <label for="columns">Columns: {columns}</label>
+      <input id="columns" type="range" min="1" max="8" bind:value={columns} />
 
-      <label>Gap Size: {gapSize}px</label>
-      <input type="range" min="0" max="100" bind:value={gapSize} />
+      <label for="gapSize">Gap Size: {gapSize}px</label>
+      <input id="gapSize" type="range" min="0" max="100" bind:value={gapSize} />
     </div>
-    Photos
     <div class="grid" style="--columns: {columns}; --gap-size: {gapSize}px;">
       {#each listOfStudents as { imageUrl, label }}
         <div class="grid-item">
